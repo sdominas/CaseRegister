@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author Adrian Lapierre <adrian@softproject.com.pl>
+ * @author dominik.jedrzejowski
  */
 @Controller
 public class MainController {
