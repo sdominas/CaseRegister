@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Adrian Lapierre <adrian@softproject.com.pl>
  */
 @Controller
-public class MyController {
+public class MainController {
     
     protected Logger logger = Logger.getLogger(getClass());
     
