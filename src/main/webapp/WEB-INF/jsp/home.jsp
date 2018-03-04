@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        Registered Case: ${registeredCase.name}
+        Registered Case: ${employee.name}    ${registeredCase.name}
     </body>
 </html>
