@@ -1,10 +1,7 @@
 package pl.com.dominikj.caseregister.dao;
 
-
-
-
 import org.springframework.data.repository.CrudRepository;
-import pl.com.dominikj.caseregister.model.RegisteredCase;
+import pl.com.dominikj.caseregister.model.RegCase;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +13,6 @@ import pl.com.dominikj.caseregister.model.RegisteredCase;
  *
  * @author dominik.jedrzejowski
  */
-public interface RegisteredCaseDAO extends CrudRepository<RegisteredCase, Integer>{
+public interface RegCaseDAO extends CrudRepository<RegCase, Integer>{
     
 }

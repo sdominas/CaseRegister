@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-08-31 the original author or authors.
+ * Copyright 2018-03-02 the original author or authors.
  */
 package pl.com.dominikj.caseregister.controller;
 

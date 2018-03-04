@@ -13,56 +13,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import pl.com.dominikj.caseregister.dao.EmployeeDAO;
-import pl.com.dominikj.caseregister.dao.SectionDAO;
-import pl.com.dominikj.caseregister.model.Employee;
+import pl.com.dominikj.caseregister.model.RegCase;
+import pl.com.dominikj.caseregister.dao.RegCaseDAO;
 
 /**
  *
  * @author dominik.jedrzejowski
  */
 @Controller
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/regCase")
+public class RegCaseController {
 
     @Autowired
-    private EmployeeDAO employeeDAO;
-
-    @Autowired
-    private SectionDAO sectionDAO;
+    private RegCaseDAO regCaseDAO;
 
     @RequestMapping("/add")
-    public ModelAndView addEmployee() {
+    public ModelAndView add() {
 
-        Employee employee = new Employee();
-        ModelAndView model = new ModelAndView("addEmployee");
-        model.addObject("employee", employee);
-        model.addObject("sections", sectionDAO.findAll());
+        RegCase regCase = new RegCase();
+        ModelAndView model = new ModelAndView("addRegCase");
+        model.addObject("regCase", regCase);
 
         return model;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String save(@Valid Employee employee, BindingResult bindingResult) {
+    public String save(@Valid RegCase regCase, BindingResult bindingResult) {
 
-        System.out.println(employee);
+        System.out.println(regCase);
 
         // bindingResult - validacja danych - adnotacja @Valid, 
         if (bindingResult.hasErrors()) {
-            return "addEmployee";
+            return "addRegCase";
         } else {
-            System.out.println(employee);
-            employeeDAO.save(employee);
-            return "redirect:/employee/list.htm";
+            System.out.println(regCase);
+            regCaseDAO.save(regCase);
+            return "redirect:/regCase/list.htm";
         }
     }
 
     @RequestMapping("/list")
     public ModelAndView list() {
-        Iterable<Employee> result = employeeDAO.findAll();
+        Iterable<RegCase> result = regCaseDAO.findAll();
 
-        ModelAndView model = new ModelAndView("employeeList");
-        model.addObject("employees", result);
+        ModelAndView model = new ModelAndView("regCaseList");
+        model.addObject("regCases", result);
 
         return model;
     }
@@ -70,11 +65,11 @@ public class EmployeeController {
     @RequestMapping("edit")
     public ModelAndView edit(@RequestParam int id) {
 
-        ModelAndView model = new ModelAndView("addEmployee");
+        ModelAndView model = new ModelAndView("addRegCase");
 
-        Employee employee = employeeDAO.findOne(id);
-        model.addObject("employee", employee);
-        model.addObject("sections", sectionDAO.findAll());
+        RegCase regCase = regCaseDAO.findOne(id);
+        model.addObject("regCase", regCase);
+//        model.addObject("sections", sectionDAO.findAll());
 
         return model;
     }

@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author dominik.jedrzejowski
  */
 @Entity
-public class RegisteredCase implements Serializable {
+public class RegCase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

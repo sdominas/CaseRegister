@@ -1,7 +1,6 @@
 package pl.com.dominikj.caseregister.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.com.dominikj.caseregister.model.Employee;
 import pl.com.dominikj.caseregister.model.Section;
 
 /*

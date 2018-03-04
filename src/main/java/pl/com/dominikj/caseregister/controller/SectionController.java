@@ -13,56 +13,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import pl.com.dominikj.caseregister.dao.EmployeeDAO;
 import pl.com.dominikj.caseregister.dao.SectionDAO;
 import pl.com.dominikj.caseregister.model.Employee;
+import pl.com.dominikj.caseregister.model.Section;
 
 /**
  *
  * @author dominik.jedrzejowski
  */
 @Controller
-@RequestMapping("/employee")
-public class EmployeeController {
-
-    @Autowired
-    private EmployeeDAO employeeDAO;
+@RequestMapping("/section")
+public class SectionController {
 
     @Autowired
     private SectionDAO sectionDAO;
 
     @RequestMapping("/add")
-    public ModelAndView addEmployee() {
-
-        Employee employee = new Employee();
-        ModelAndView model = new ModelAndView("addEmployee");
-        model.addObject("employee", employee);
-        model.addObject("sections", sectionDAO.findAll());
-
+    public ModelAndView addSection() {
+        Section section = new Section();
+        ModelAndView model = new ModelAndView("addSection");
+        model.addObject("section", section);
         return model;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String save(@Valid Employee employee, BindingResult bindingResult) {
+    public String save(@Valid Section section, BindingResult bindingResult) {
 
-        System.out.println(employee);
+        System.out.println(section);
 
         // bindingResult - validacja danych - adnotacja @Valid, 
         if (bindingResult.hasErrors()) {
-            return "addEmployee";
+            return "addSection";
         } else {
-            System.out.println(employee);
-            employeeDAO.save(employee);
-            return "redirect:/employee/list.htm";
+            System.out.println(section);
+            sectionDAO.save(section);
+            return "redirect:/section/list.htm";
         }
     }
 
     @RequestMapping("/list")
     public ModelAndView list() {
-        Iterable<Employee> result = employeeDAO.findAll();
+        Iterable<Section> result = sectionDAO.findAll();
 
-        ModelAndView model = new ModelAndView("employeeList");
-        model.addObject("employees", result);
+        ModelAndView model = new ModelAndView("sectionList");
+        model.addObject("sections", result);
 
         return model;
     }
@@ -70,11 +64,10 @@ public class EmployeeController {
     @RequestMapping("edit")
     public ModelAndView edit(@RequestParam int id) {
 
-        ModelAndView model = new ModelAndView("addEmployee");
+        ModelAndView model = new ModelAndView("addSection");
 
-        Employee employee = employeeDAO.findOne(id);
-        model.addObject("employee", employee);
-        model.addObject("sections", sectionDAO.findAll());
+        Section section = sectionDAO.findOne(id);
+        model.addObject("section", section);
 
         return model;
     }
