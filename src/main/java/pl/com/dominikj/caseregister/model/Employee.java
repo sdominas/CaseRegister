@@ -31,11 +31,10 @@ public class Employee {
     @Email
     @NotEmpty
     private String email;
-    private int discount;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+    @JoinColumn(name = "section_id")
+    private Section section;
     
     public Integer getId() {
         return id;
@@ -69,17 +68,17 @@ public class Employee {
         this.email = email;
     }
 
-    public Team getTeam() {
-        return team;
+    public Section getSection() {
+        return section;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setSection(Section section) {
+        this.section = section;
     }
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", name=" + name + ", lastName=" + lastName + ", email=" + email + '}';
+        return "Employee{" + "id=" + id + ", name=" + name + ", lastName=" + lastName + ", email=" + email + '}';
     }
     
     

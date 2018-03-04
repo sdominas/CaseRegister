@@ -20,7 +20,7 @@ public class MainController {
     @RequestMapping("/home")
     public ModelAndView home() {
         
-        logger.debug("MyController.home()");
+        logger.debug("MainController.home()");
         
         return new ModelAndView("home");
     }

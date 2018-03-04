@@ -26,23 +26,23 @@ public class EmployeeController {
     @Autowired
     private EmployeeDAO employeeDAO;
     
-    @RequestMapping("/add")
+    @RequestMapping("/addEmployee")
     public ModelAndView add(){
         
-        ModelAndView model = new ModelAndView("addemployee");
+        ModelAndView model = new ModelAndView("addEmployee");
         model.addObject("employee", new Employee() );
         
         return model;
     }
     
-    @RequestMapping(value = "/saveemployee", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
     public String save(@Valid Employee employee, BindingResult bindingResult){
         
         System.out.println(employee);
 
         // bindingResult - validacja danych - adnotacja @Valid, 
         if(bindingResult.hasErrors()){
-            return "addemployee";
+            return "saveEmployee";
         }
 
         employeeDAO.save(employee);

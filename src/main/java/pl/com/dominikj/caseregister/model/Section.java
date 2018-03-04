@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author dominik.jedrzejowski
  */
 @Entity
-public class Team {
+public class Section {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
