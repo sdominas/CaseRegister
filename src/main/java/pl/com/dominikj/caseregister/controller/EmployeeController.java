@@ -79,4 +79,22 @@ public class EmployeeController {
         return model;
     }
 
+    @RequestMapping("/regCase")
+    public ModelAndView regCases(int employeeId) {
+        ModelAndView model = new ModelAndView("regCaseListForEmployee");
+        model.addObject("employee", employeeDAO.findOne(employeeId));
+        return model;
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView search(String name) {
+
+        Iterable<Employee> res = employeeDAO.findByJPQL(name + "%");
+
+        ModelAndView model = new ModelAndView("employeeList");
+        model.addObject("employees", res);
+
+        return model;
+
+    }
 }

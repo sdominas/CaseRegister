@@ -4,12 +4,15 @@
 
 package pl.com.dominikj.caseregister.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -36,6 +39,10 @@ public class Employee {
     @JoinColumn(name = "section_id")
     private Section section;
     
+    @OneToMany(mappedBy = "whoregistered")
+    private List<RegCase> regCases = new ArrayList<RegCase>(0);
+    
+        
     public Integer getId() {
         return id;
     }
@@ -76,6 +83,14 @@ public class Employee {
         this.section = section;
     }
 
+    public List<RegCase> getRegCases() {
+        return regCases;
+    }
+
+    public void setRegCases(List<RegCase> regCases) {
+        this.regCases = regCases;
+    }
+    
     @Override
     public String toString() {
         return "Employee{" + "id=" + id + ", name=" + name + ", lastName=" + lastName + ", email=" + email + '}';

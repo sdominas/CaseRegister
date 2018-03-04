@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -31,22 +34,32 @@ public class RegCase implements Serializable {
     private String order1;
     private String order2;
     private String info;
-    private Long whoregistered;
+    
+    @ManyToOne
+    @JoinColumn(name = "whoregistered")
+    private Employee whoregistered;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date registeredDate;
     
     private boolean isSolution;
-    private Long whosolved;
+
+    private Integer whosolved;
+
     private String solutionInfo;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date solutionDate;
     
     private boolean isDocumentation;
     private String infoDocumentation;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date registeredDocumentationDate;
 
     private String foto1;
     private String foto2;
     private String foto3;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date modificationDate;
     private Variant variantdeviceId;
 
@@ -58,6 +71,14 @@ public class RegCase implements Serializable {
         this.id = id;
     }
 
+    public Employee getWhoregistered() {
+        return whoregistered;
+    }
+
+    public void setWhoregistered(Employee whoregistered) {
+        this.whoregistered = whoregistered;
+    }
+    
     public String getName() {
         return name;
     }
@@ -114,14 +135,6 @@ public class RegCase implements Serializable {
         this.info = info;
     }
 
-    public Long getWhoregistered() {
-        return whoregistered;
-    }
-
-    public void setWhoregistered(Long whoregistered) {
-        this.whoregistered = whoregistered;
-    }
-
     public Date getRegisteredDate() {
         return registeredDate;
     }
@@ -138,13 +151,14 @@ public class RegCase implements Serializable {
         this.isSolution = isSolution;
     }
 
-    public Long getWhosolved() {
+    public Integer getWhosolved() {
         return whosolved;
     }
 
-    public void setWhosolved(Long whosolved) {
+    public void setWhosolved(Integer whosolved) {
         this.whosolved = whosolved;
     }
+
 
     public String getSolutionInfo() {
         return solutionInfo;
