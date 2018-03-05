@@ -5,6 +5,8 @@
  */
 package pl.com.dominikj.caseregister.controller;
 
+import java.time.Instant;
+import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,11 +43,14 @@ public class RegCaseController {
     public String save(@Valid RegCase regCase, BindingResult bindingResult) {
 
         System.out.println(regCase);
+        Date dateReg;
+        dateReg = Date.from(Instant.now());
 
         // bindingResult - validacja danych - adnotacja @Valid, 
         if (bindingResult.hasErrors()) {
             return "addRegCase";
         } else {
+            regCase.setRegisteredDate(dateReg);
             System.out.println(regCase);
             regCaseDAO.save(regCase);
             return "redirect:/regCase/list.htm";
