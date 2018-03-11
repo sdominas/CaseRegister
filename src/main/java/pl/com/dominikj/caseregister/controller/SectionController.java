@@ -5,6 +5,8 @@
  */
 package pl.com.dominikj.caseregister.controller;
 
+import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.com.dominikj.caseregister.dao.SectionDAO;
-import pl.com.dominikj.caseregister.model.Employee;
 import pl.com.dominikj.caseregister.model.Section;
 
 /**
@@ -53,7 +54,7 @@ public class SectionController {
 
     @RequestMapping("/list")
     public ModelAndView list() {
-        Iterable<Section> result = sectionDAO.findAll();
+        List<Section> result = sectionDAO.list();
 
         ModelAndView model = new ModelAndView("sectionList");
         model.addObject("sections", result);
@@ -61,15 +62,15 @@ public class SectionController {
         return model;
     }
 
-    @RequestMapping("edit")
-    public ModelAndView edit(@RequestParam int id) {
-
-        ModelAndView model = new ModelAndView("addSection");
-
-        Section section = sectionDAO.findOne(id);
-        model.addObject("section", section);
-
-        return model;
-    }
+//    @RequestMapping("edit")
+//    public ModelAndView edit(@RequestParam int id) {
+//
+//        ModelAndView model = new ModelAndView("addSection");
+//
+//        Optional<Section> section = sectionDAO.findById(id);
+//        model.addObject("section", section);
+//
+//        return model;
+//    }
 
 }

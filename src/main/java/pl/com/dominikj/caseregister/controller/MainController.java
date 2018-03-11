@@ -3,8 +3,11 @@
  */
 package pl.com.dominikj.caseregister.controller;
 
+import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,8 +20,8 @@ public class MainController {
     
     protected Logger logger = Logger.getLogger(getClass());
     
-    @RequestMapping("/home")
-    public ModelAndView home() {
+    @RequestMapping("/")
+    public ModelAndView home(Locale locale, Model model) {
         
         logger.debug("MainController.home()");
         

@@ -7,6 +7,8 @@ package pl.com.dominikj.caseregister.controller;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,7 +61,7 @@ public class RegCaseController {
 
     @RequestMapping("/list")
     public ModelAndView list() {
-        Iterable<RegCase> result = regCaseDAO.findAll();
+        List<RegCase> result = regCaseDAO.list();
 
         ModelAndView model = new ModelAndView("regCaseList");
         model.addObject("regCases", result);
@@ -67,16 +69,16 @@ public class RegCaseController {
         return model;
     }
 
-    @RequestMapping("edit")
-    public ModelAndView edit(@RequestParam int id) {
-
-        ModelAndView model = new ModelAndView("addRegCase");
-
-        RegCase regCase = regCaseDAO.findOne(id);
-        model.addObject("regCase", regCase);
-//        model.addObject("sections", sectionDAO.findAll());
-
-        return model;
-    }
+//    @RequestMapping("edit")
+//    public ModelAndView edit(@RequestParam int id) {
+//
+//        ModelAndView model = new ModelAndView("addRegCase");
+//
+//        Optional<RegCase> regCase = regCaseDAO.findById(id);
+//        model.addObject("regCase", regCase);
+////        model.addObject("sections", sectionDAO.findAll());
+//
+//        return model;
+//    }
 
 }

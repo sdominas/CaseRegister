@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.com.dominikj</groupId>
@@ -7,210 +7,149 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>CaseRegister Spring MVC SpringData WEB Application</name>
-    <url>http://www.softproject.com.pl</url>
-    
     <properties>
-        <spring.version>3.2.2.RELEASE</spring.version>
-        <spring.security.version>3.1.4.RELEASE</spring.security.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <spring.version>5.0.0.RELEASE</spring.version>
+        <hibernate.version>5.2.11.Final</hibernate.version>
+        <hibernate.validator>5.4.1.Final</hibernate.validator>
+        <c3p0.version>0.9.5.2</c3p0.version>
+        <jstl.version>1.2.1</jstl.version>
+        <tld.version>1.1.2</tld.version>
+        <servlets.version>3.1.0</servlets.version>
+        <jsp.version>2.3.1</jsp.version>
+        <hsqldb.version>1.8.0.10</hsqldb.version>
     </properties>
-    
     <dependencies>
-        
-<!--        poniższa zależnośc powoduje problemy z uruchamianiem testów jenostokwych, ponieważ dostarcza tylko interfejsów bez implementacji -->
-        
-<!--        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>-->
-        
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.14</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>        
-        
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.security.version}</version>            
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>            
-        </dependency>
-
-        <dependency>
-            <artifactId>spring-security-core</artifactId>
-            <groupId>org.springframework.security</groupId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        
-        <!-- Spring do Spring Security -->
-        
-        <dependency>
-            <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-beans</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-jdbc</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-tx</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-web</artifactId>
-            <groupId>org.springframework</groupId>
-            <type>jar</type>
-            <version>${spring.version}</version>
-        </dependency>
-        
-        <!-- reszta zależności Spring-->
-        
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>            
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>            
-            <version>${spring.version}</version>
-        </dependency>
-            
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
-            
+        <!-- Spring MVC Dependency -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
-            <type>jar</type>
-        </dependency>
-            
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
-            
-<!-- JPA i SpringData-->
-
-	<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
+        <!-- Spring ORM -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
-	<dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
-        </dependency>
-
+        <!-- Hibernate ORM -->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.9.Final</version>
-            <scope>runtime</scope>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.14.Final</version>
+            <type>jar</type>
         </dependency>
 
-	<dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.6.2.1</version>
-            <scope>runtime</scope>
-        </dependency>
-
-	<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-
-<!-- Spring Data -->
-
+        <!-- Hibernate-C3P0 Integration -->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>1.3.0.RELEASE</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
 
-<!--        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
-        </dependency>-->
-
-<!-- Tagliby -->
-
+        <!-- c3p0 -->
         <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${c3p0.version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.1.2</version>
-        </dependency>    
 
-<!-- Hibernate Validator -->
-
+        <!-- Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.0.3.Final</version>
+            <version>${hibernate.validator}</version>
+        </dependency>
+
+        <!-- JSTL Dependency -->
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>${tld.version}</version>
+        </dependency>
+
+        <!-- Servlet Dependency -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlets.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSP Dependency -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- HSQL Dependency -->
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.0.5.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>2.0.5.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Embedded Apache Tomcat required for testing war -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
