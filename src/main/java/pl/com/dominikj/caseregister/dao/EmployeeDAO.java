@@ -6,6 +6,7 @@
 package pl.com.dominikj.caseregister.dao;
 
 import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 import pl.com.dominikj.caseregister.model.Employee;
 
 /**
@@ -17,4 +18,6 @@ public interface EmployeeDAO {
     void save(Employee employee);
 
     List<Employee> list();
+    
+    Employee findByUserId(Long userId);
 }

@@ -18,4 +18,6 @@ public interface RegCaseDAO {
 
     List<RegCase> list();
 
+    RegCase findByUserId(Long userId);
+
 }

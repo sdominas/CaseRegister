@@ -5,7 +5,6 @@ import javax.persistence.TypedQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.com.dominikj.caseregister.model.Employee;
 import pl.com.dominikj.caseregister.model.Section;
 
 /*
@@ -33,6 +32,11 @@ public class SectionDAOImp implements SectionDAO {
         @SuppressWarnings("unchecked")
         TypedQuery<Section> query = sessionFactory.getCurrentSession().createQuery("from Section");
         return query.getResultList();
+    }
+
+    @Override
+    public Section findByUserId(Long userId) {
+        return (Section) sessionFactory.getCurrentSession().load(Section.class, userId);
     }
 
 }

@@ -24,7 +24,8 @@ public class EmployeeDAOImp implements EmployeeDAO {
 
     @Override
     public void save(Employee employee) {
-      sessionFactory.getCurrentSession().save(employee);
+//        getHibernateTemplate().save(employee);
+        sessionFactory.getCurrentSession().save(employee);
     }
 
     @Override
@@ -32,6 +33,11 @@ public class EmployeeDAOImp implements EmployeeDAO {
         @SuppressWarnings("unchecked")
         TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee");
         return query.getResultList();
+    }
+
+    @Override
+    public Employee findByUserId(Long id) {
+        return (Employee) sessionFactory.getCurrentSession().load(Employee.class, id);
     }
 
 }

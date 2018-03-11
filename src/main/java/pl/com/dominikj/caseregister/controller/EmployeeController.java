@@ -13,10 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.com.dominikj.caseregister.dao.SectionDAO;
 import pl.com.dominikj.caseregister.model.Employee;
 import pl.com.dominikj.caseregister.service.EmployeeService;
+import pl.com.dominikj.caseregister.service.SectionService;
 
 /**
  *
@@ -30,15 +32,15 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @Autowired
-    private SectionDAO sectionDAO;
-
+    private SectionService sectionService;
+    
     @RequestMapping("/add")
     public ModelAndView addEmployee() {
 
         Employee employee = new Employee();
         ModelAndView model = new ModelAndView("addEmployee");
         model.addObject("employee", employee);
-        model.addObject("sections", sectionDAO.list());
+        model.addObject("sections", sectionService.list());
 
         return model;
     }
@@ -68,4 +70,14 @@ public class EmployeeController {
 
         return model;
     }
+    
+//    @RequestMapping("edit")
+//    public ModelAndView edit(@RequestParam Long id) {
+//        ModelAndView model = new ModelAndView("addEmployee");
+//        Employee employee = employeeService.findByUserId(id);
+//        model.addObject("employee", employee);
+//        model.addObject("sections", sectionService.list());
+//        return model;
+//    }
+
 }

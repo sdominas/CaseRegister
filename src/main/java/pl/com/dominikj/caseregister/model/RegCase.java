@@ -25,7 +25,7 @@ public class RegCase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @NotEmpty
     private String name;
     private String position;
@@ -63,11 +63,11 @@ public class RegCase implements Serializable {
     private Date modificationDate;
     private Variant variantdeviceId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

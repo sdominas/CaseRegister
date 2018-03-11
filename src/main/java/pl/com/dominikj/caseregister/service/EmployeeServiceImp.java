@@ -12,16 +12,21 @@ import pl.com.dominikj.caseregister.model.Employee;
 @Service
 public class EmployeeServiceImp implements EmployeeService {
 
-   @Autowired
-   private EmployeeDAO employeeDAO;
+    @Autowired
+    private EmployeeDAO employeeDAO;
 
-   @Transactional
-   public void save(Employee employee) {
-      employeeDAO.save(employee);
-   }
+    @Transactional
+    public void save(Employee employee) {
+        employeeDAO.save(employee);
+    }
 
-   @Transactional(readOnly = true)
-   public List<Employee> list() {
-      return employeeDAO.list();
-   }
+    @Transactional(readOnly = true)
+    public List<Employee> list() {
+        return employeeDAO.list();
+    }
+
+//    public Employee findByUserId(Long userId) {
+//        return employeeDAO.findByUserId(userId);
+//    }
+
 }

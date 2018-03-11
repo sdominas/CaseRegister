@@ -5,10 +5,19 @@
  */
 package pl.com.dominikj.caseregister.service;
 
+import java.util.List;
+import pl.com.dominikj.caseregister.model.RegCase;
+
 /**
  *
  * @author dominik.jedrzejowski
  */
 public interface RegCaseService {
-    
+
+    void save(RegCase regCase);
+
+    List<RegCase> list();
+
+    RegCase findByUserId(Long userId);
+
 }

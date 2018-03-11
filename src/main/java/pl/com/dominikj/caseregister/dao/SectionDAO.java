@@ -18,4 +18,6 @@ public interface SectionDAO {
 
     List<Section> list();
 
+    Section findByUserId(Long userId);
+
 }

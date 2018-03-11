@@ -5,10 +5,19 @@
  */
 package pl.com.dominikj.caseregister.service;
 
+import java.util.List;
+import pl.com.dominikj.caseregister.model.Section;
+
 /**
  *
  * @author dominik.jedrzejowski
  */
 public interface SectionService {
-    
+
+    void save(Section section);
+
+    List<Section> list();
+
+    Section findByUserId(Long userId);
+
 }

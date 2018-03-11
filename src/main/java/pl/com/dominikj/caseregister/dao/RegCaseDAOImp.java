@@ -34,4 +34,9 @@ public class RegCaseDAOImp implements RegCaseDAO {
         return query.getResultList();
     }
 
+    @Override
+    public RegCase findByUserId(Long userId) {
+        return (RegCase) sessionFactory.getCurrentSession().load(RegCase.class, userId);
+    }
+
 }
