@@ -9,8 +9,10 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +35,7 @@ public class EmployeeController {
 
     @Autowired
     private SectionService sectionService;
-    
+
     @RequestMapping("/add")
     public ModelAndView addEmployee() {
 
@@ -70,14 +72,21 @@ public class EmployeeController {
 
         return model;
     }
-    
+
+    @RequestMapping("edit")
+    public ModelAndView edit(@RequestParam Long id) {
+        ModelAndView model = new ModelAndView("addEmployee");
+        Employee employee = employeeService.findByUserId(id);
+        model.addObject("employee", employee);
+        model.addObject("sections", sectionService.list());
+        return model;
+    }
+
 //    @RequestMapping("edit")
-//    public ModelAndView edit(@RequestParam Long id) {
-//        ModelAndView model = new ModelAndView("addEmployee");
-//        Employee employee = employeeService.findByUserId(id);
-//        model.addObject("employee", employee);
-//        model.addObject("sections", sectionService.list());
-//        return model;
+//    public String edit(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("empoyee", this.employeeService.findByUserId(id));
+//        model.addAttribute("employees", this.employeeService.list());
+//        return "employee";
 //    }
 
 }

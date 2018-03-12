@@ -18,7 +18,7 @@ import pl.com.dominikj.caseregister.model.User;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.howtodoinjava.demo.spring")})
+@ComponentScans(value = { @ComponentScan("pl.com.dominikj.caseregister")})
 public class HibernateConfig {
 
 	@Autowired

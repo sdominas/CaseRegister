@@ -9,6 +9,6 @@ public interface EmployeeService {
 
     List<Employee> list();
 
-//    Employee findByUserId(Long userId);
+    Employee findByUserId(Long userId);
 
 }

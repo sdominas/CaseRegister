@@ -25,8 +25,9 @@ public class EmployeeServiceImp implements EmployeeService {
         return employeeDAO.list();
     }
 
-//    public Employee findByUserId(Long userId) {
-//        return employeeDAO.findByUserId(userId);
-//    }
+    @Transactional
+    public Employee findByUserId(Long userId) {
+        return employeeDAO.findByUserId(userId);
+    }
 
 }
