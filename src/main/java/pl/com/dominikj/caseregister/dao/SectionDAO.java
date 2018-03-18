@@ -15,6 +15,8 @@ import pl.com.dominikj.caseregister.model.Section;
 public interface SectionDAO {
 
     void save(Section section);
+    
+    void delete(Section section);
 
     List<Section> list();
 

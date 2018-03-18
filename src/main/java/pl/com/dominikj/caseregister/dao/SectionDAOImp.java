@@ -28,6 +28,11 @@ public class SectionDAOImp implements SectionDAO {
     }
 
     @Override
+    public void delete(Section section) {
+        sessionFactory.getCurrentSession().delete(section);
+    }
+    
+    @Override
     public List<Section> list() {
         @SuppressWarnings("unchecked")
         TypedQuery<Section> query = sessionFactory.getCurrentSession().createQuery("from Section");

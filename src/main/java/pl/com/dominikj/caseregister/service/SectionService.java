@@ -16,6 +16,8 @@ public interface SectionService {
 
     void save(Section section);
 
+    void delete(Section section);
+
     List<Section> list();
 
     Section findByUserId(Long userId);

@@ -27,6 +27,11 @@ public class SectionServiceImp implements SectionService {
         sectionDAO.save(section);
     }
 
+    @Transactional
+    public void delete(Section section) {
+        sectionDAO.delete(section);
+    }
+
     @Transactional(readOnly = true)
     public List<Section> list() {
         return sectionDAO.list();

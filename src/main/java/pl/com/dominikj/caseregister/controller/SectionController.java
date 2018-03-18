@@ -5,72 +5,58 @@
  */
 package pl.com.dominikj.caseregister.controller;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Locale;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import pl.com.dominikj.caseregister.dao.SectionDAO;
 import pl.com.dominikj.caseregister.model.Section;
+import pl.com.dominikj.caseregister.service.SectionService;
 
 /**
  *
  * @author dominik.jedrzejowski
  */
 @Controller
-@RequestMapping("/section")
 public class SectionController {
 
     @Autowired
-    private SectionDAO sectionDAO;
+    private SectionService sectionService;
 
-    @RequestMapping("/add")
-    public ModelAndView addSection() {
-        Section section = new Section();
-        ModelAndView model = new ModelAndView("addSection");
-        model.addObject("section", section);
-        return model;
+    @GetMapping("/section/add")
+    public String selectionForm(Locale locale, Model model) {
+        model.addAttribute("sections", sectionService.list());
+        return "editSection";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String save(@Valid Section section, BindingResult bindingResult) {
+    @ModelAttribute("section")
+    public Section formBackingObject() {
+        return new Section();
+    }
 
-        System.out.println(section);
+    @PostMapping("/section/add")
+    public String saveSelection(@ModelAttribute("section") @Valid Section section, BindingResult result, Model model) {
 
-        // bindingResult - validacja danych - adnotacja @Valid, 
-        if (bindingResult.hasErrors()) {
-            return "addSection";
-        } else {
-            System.out.println(section);
-            sectionDAO.save(section);
-            return "redirect:/section/list.htm";
+        if (result.hasErrors()) {
+            model.addAttribute("sections", sectionService.list());
+            return "editSection";
         }
+
+        sectionService.save(section);
+        return "redirect:/section/add";
     }
 
-    @RequestMapping("/list")
-    public ModelAndView list() {
-        List<Section> result = sectionDAO.list();
+    @GetMapping("/section/remove")
+    public String deleteSection(@RequestParam Long id) {
 
-        ModelAndView model = new ModelAndView("sectionList");
-        model.addObject("sections", result);
-
-        return model;
+        Section section = sectionService.findByUserId(id);
+        sectionService.delete(section);
+        return "redirect:/section/add";
     }
-
-//    @RequestMapping("edit")
-//    public ModelAndView edit(@RequestParam int id) {
-//
-//        ModelAndView model = new ModelAndView("addSection");
-//
-//        Optional<Section> section = sectionDAO.findById(id);
-//        model.addObject("section", section);
-//
-//        return model;
-//    }
 
 }
